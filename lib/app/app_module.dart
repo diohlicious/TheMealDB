@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:themealdb/app/pages/detail/detail_module.dart';
 import 'package:themealdb/app/pages/drawer/drawer_module.dart';
 import 'package:themealdb/app/pages/home/home_module.dart';
+import 'package:themealdb/app/pages/meal/meal_module.dart';
 
 import 'app_bloc.dart';
 import 'app_widget.dart';
@@ -20,11 +22,8 @@ class AppModule extends MainModule {
   List<ModularRouter> get routers => [
     ModularRouter("/", module: DrawerModule()),
     ModularRouter("/home", module: HomeModule()),
-    //TODO: Add detail Page
-    //ModularRouter("/detail", module: DetailModule()),
-
-
-
+    ModularRouter("/meal", module: MealModule()),
+    ModularRouter("/detail", module: DetailModule()),
   ];
 
   // Provide the root widget associated with your module

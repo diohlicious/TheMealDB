@@ -1,21 +1,21 @@
 // To parse this JSON data, do
 //
-//     final categoriesModel = categoriesModelFromJson(jsonString);
+//     final mealsModel = mealsModelFromJson(jsonString);
 
 import 'dart:convert';
 
-CategoryModel categoriesModelFromJson(String str) => CategoryModel.fromJson(json.decode(str));
+MealsModel mealsModelFromJson(String str) => MealsModel.fromJson(json.decode(str));
 
-String categoriesModelToJson(CategoryModel data) => json.encode(data.toJson());
+String mealsModelToJson(MealsModel data) => json.encode(data.toJson());
 
-class CategoryModel {
-  CategoryModel({
+class MealsModel {
+  MealsModel({
     this.meals,
   });
 
   List<Meal> meals;
 
-  factory CategoryModel.fromJson(Map<String, dynamic> json) => CategoryModel(
+  factory MealsModel.fromJson(Map<String, dynamic> json) => MealsModel(
     meals: List<Meal>.from(json["meals"].map((x) => Meal.fromJson(x))),
   );
 

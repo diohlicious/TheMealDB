@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:themealdb/app/network/network_endpoints.dart';
 import 'package:themealdb/app/pages/home/home_module.dart';
 
 import 'drawer_bloc.dart';
@@ -85,7 +86,7 @@ class DrawerPage extends StatelessWidget {
                             image: DecorationImage(
                                 fit: BoxFit.fill,
                                 image: NetworkImage(
-                                    'https://www.themealdb.com/images/ingredients/Lime-Small.png'))),
+                                    '${NetworkEndpoints.BASE_URL}/images/meal-icon.png'))),
                       ),
                       accountName: Text('',
                           style: TextStyle(
