@@ -1,6 +1,6 @@
-# themealdb
+# TheMealDB Flutter App
 
-Meal Db Flutter application.
+The Meal Db Flutter application.
 
 ## Description
 
@@ -11,3 +11,6 @@ Meal Db Flutter application.
 
 ## Screen
 ___
+|Categories Grid View|Categories List View
+|--|--
+![alt text](https://github.com/diohlicious/TheMealDB/blob/main/screenshoot/flutter_02.png "Categories Grid View")|![alt text](https://github.com/diohlicious/TheMealDB/blob/main/screenshoot/flutter_03.png "Categories List View")
