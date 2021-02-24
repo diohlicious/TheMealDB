@@ -1,25 +1,24 @@
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rxdart/rxdart.dart';
+import 'package:themealdb/app/pages/home/model/categories_model.dart';
 import 'package:themealdb/app/pages/meal/repository/meal_repository.dart';
 
-import 'model/meals_model.dart';
 
 class MealBloc extends Disposable{
   final MealRepository mealRepository;
 
   MealBloc(this.mealRepository);
 
-  BehaviorSubject<MealsModel> mealsModel$ = BehaviorSubject<MealsModel>();
+  BehaviorSubject<Category> detailModel$ = BehaviorSubject<Category>();
 
-  Future fetchMeal(String _meal) async{
-    var _mealModel = await mealRepository.fetchMeal(_meal);
-    print(_mealModel.toJson());
-    mealsModel$.add(_mealModel);
+  Future fetchMeal(Category category) async{
+    var _detailModel = await mealRepository.fetchMeal(category);
+    detailModel$.add(_detailModel);
   }
 
   @override
   void dispose() {
-    mealsModel$.close();
+    detailModel$.close();
   }
 
 }

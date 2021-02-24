@@ -14,7 +14,6 @@ class DetailBloc extends Disposable{
 
   Future fetchDetail(String idMeal) async {
     var _detailModel = await detailRepository.fetchDetail(idMeal);
-    print (_detailModel.strIngredient);
     detailModel$.add(_detailModel);
   }
 

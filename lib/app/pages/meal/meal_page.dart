@@ -1,23 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:themealdb/app/network/network_endpoints.dart';
+import 'package:themealdb/app/pages/home/model/categories_model.dart';
+import 'package:themealdb/app/pages/meal/meal_bloc.dart';
 import 'package:themealdb/app/pages/widgets/sliver_meal/sliver_meal_widget.dart';
 
-import 'meal_bloc.dart';
-import 'model/meals_model.dart';
-
 class MealPage extends StatelessWidget {
-  final dynamic category;
+  final Category category;
 
   MealPage({Key key, this.category}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     MealBloc bloc = Modular.get<MealBloc>();
-    bloc.fetchMeal(category.strCategory??'');
-    return StreamBuilder<MealsModel>(
-        stream: bloc.mealsModel$,
+    category.meals==null
+        ? bloc.fetchMeal(category).then((value) => null)
+        : bloc.detailModel$.add(category);
+    return StreamBuilder<Category>(
+        stream: bloc.detailModel$,
         builder: (context, snapshot) {
           if (!snapshot.hasData) {
             return Center(
@@ -45,7 +45,7 @@ class MealPage extends StatelessWidget {
                     elevation: 0,
                     flexibleSpace: FlexibleSpaceBar(
                       title: Text(
-                        category.strCategory??'',
+                        d.strCategory,
                         style: TextStyle(color: Colors.white),
                       ),
                       stretchModes: [
@@ -64,13 +64,15 @@ class MealPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.network(
-                              category.strCategoryThumb??'${NetworkEndpoints.BASE_URL}/images/meal-icon.png',
+                              category.strCategoryThumb,
+                              //??'${NetworkEndpoints.BASE_URL}/images/meal-icon.png',
                               scale: 1.5,
                             ),
                             Text(
                               category.strCategoryDescription,
                               textAlign: TextAlign.center,
-                              style: TextStyle(fontSize: 12,
+                              style: TextStyle(
+                                fontSize: 12,
                                 color: Colors.white,
                                 shadows: <Shadow>[
                                   Shadow(
@@ -83,15 +85,15 @@ class MealPage extends StatelessWidget {
                                     blurRadius: 1.0,
                                     color: Colors.black,
                                   ),
-                                ],),
-
+                                ],
+                              ),
                             ),
                           ],
                         ),
                       ),
                     ),
                   ),
-                  SliverMealWidget(list: d.meals??category.meals),
+                  SliverMealWidget(list: d.meals),
                 ],
               ),
             ),

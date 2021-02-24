@@ -28,6 +28,7 @@ class HomeBloc extends Disposable{
   }
 
   Future searchMeal() async {
+    //go to meals page
     await homeRepository.searchMeal(txtSearch).then((value) =>
         Modular.to.pushNamed('/meal', arguments: value,
         ));

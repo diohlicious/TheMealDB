@@ -7,11 +7,11 @@ import 'detail_bloc.dart';
 import 'model/detail.model.dart';
 
 class DetailPage extends StatelessWidget {
-  final String idMeal;
+  final DetailModel detailModel;
 
   DetailPage({
     Key key,
-    this.idMeal,
+    this.detailModel,
   }) : super(key: key);
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -19,7 +19,9 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DetailBloc bloc = Modular.get<DetailBloc>();
-    bloc.fetchDetail(idMeal);
+    detailModel.strCategory==null?
+    bloc.fetchDetail(detailModel.idMeal):
+    bloc.detailModel$.add(detailModel);
     return StreamBuilder(
         stream: bloc.detailModel$,
         builder: (context, snapshot) {
@@ -28,7 +30,7 @@ class DetailPage extends StatelessWidget {
               child: CircularProgressIndicator(),
             );
           }
-          DetailModel d = snapshot.data;
+          var d = snapshot.data;
           return Scaffold(
             key: _scaffoldKey,
             body: Container(

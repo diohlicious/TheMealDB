@@ -17,7 +17,7 @@ class DetailModule extends ChildModule{
 
   @override
   List<ModularRouter> get routers => [
-    ModularRouter('/', child: (_, args) => DetailPage(idMeal: args.data))
+    ModularRouter('/', child: (_, args) => DetailPage(detailModel: args.data))
   ];
 
 }

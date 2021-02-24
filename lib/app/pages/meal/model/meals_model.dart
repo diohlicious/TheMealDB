@@ -13,37 +13,13 @@ class MealsModel {
     this.meals,
   });
 
-  List<Meal> meals;
+  List<Map<String, String>> meals;
 
   factory MealsModel.fromJson(Map<String, dynamic> json) => MealsModel(
-    meals: List<Meal>.from(json["meals"].map((x) => Meal.fromJson(x))),
+    meals: List<Map<String, String>>.from(json["meals"].map((x) => Map.from(x).map((k, v) => MapEntry<String, String>(k, v == null ? null : v)))),
   );
 
   Map<String, dynamic> toJson() => {
-    "meals": List<dynamic>.from(meals.map((x) => x.toJson())),
-  };
-}
-
-class Meal {
-  Meal({
-    this.strMeal,
-    this.strMealThumb,
-    this.idMeal,
-  });
-
-  String strMeal;
-  String strMealThumb;
-  String idMeal;
-
-  factory Meal.fromJson(Map<String, dynamic> json) => Meal(
-    strMeal: json["strMeal"],
-    strMealThumb: json["strMealThumb"],
-    idMeal: json["idMeal"],
-  );
-
-  Map<String, dynamic> toJson() => {
-    "strMeal": strMeal,
-    "strMealThumb": strMealThumb,
-    "idMeal": idMeal,
+    "meals": List<dynamic>.from(meals.map((x) => Map.from(x).map((k, v) => MapEntry<String, dynamic>(k, v == null ? null : v)))),
   };
 }

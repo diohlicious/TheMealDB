@@ -49,8 +49,8 @@ class DetailModel {
     strMealThumb: json["strMealThumb"],
     strTags: json["strTags"],
     strYoutube: json["strYoutube"],
-    strIngredient: List<String>.from(json["strIngredient"].map((x) => x)),
-    strMeasure: List<String>.from(json["strMeasure"].map((x) => x)),
+    strIngredient: json["strIngredient"]==null?[]:List<String>.from(json["strIngredient"].map((x) => x)),
+    strMeasure: json["strMeasure"]==null?[]:List<String>.from(json["strMeasure"].map((x) => x)),
     strSource: json["strSource"],
     dateModified: json["dateModified"],
   );

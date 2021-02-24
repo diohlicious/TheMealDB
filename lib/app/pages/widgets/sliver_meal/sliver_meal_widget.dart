@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:themealdb/app/pages/meal/model/meals_model.dart';
+import 'package:themealdb/app/pages/detail/model/detail.model.dart';
 
 class SliverMealWidget extends StatelessWidget {
   final List list;
@@ -13,10 +13,10 @@ class SliverMealWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     var listItems = <Widget>[];
     for (var i = 0; i < list.length; i++) {
-      Meal d = list[i];
+      DetailModel d = list[i];
       listItems.add(
         GestureDetector(
-          onTap: (){Modular.to.pushNamed('/detail', arguments: d.idMeal, );},
+          onTap: (){Modular.to.pushNamed('/detail', arguments: d, );},
           child: Container(
             width: MediaQuery.of(context).size.width * 0.95,
             margin: EdgeInsets.fromLTRB(3, 5, 3, 0),
