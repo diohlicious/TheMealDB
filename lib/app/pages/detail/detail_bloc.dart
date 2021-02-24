@@ -32,6 +32,11 @@ class DetailBloc extends Disposable{
     notifyListener();
   }
 
+  setFav(DetailModel detailModel){
+    detailRepository.setFav(detailModel);
+    //print(shared);
+  }
+
 
   Widget appBarTitle;
 

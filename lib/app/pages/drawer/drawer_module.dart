@@ -1,4 +1,5 @@
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:flutter/material.dart';
 import 'package:themealdb/app/pages/drawer/repositories/drawer_repositories.dart';
 
 import 'drawer_bloc.dart';
@@ -14,6 +15,7 @@ class DrawerModule extends ChildModule {
 
   @override
   List<ModularRouter> get routers => [
-    ModularRouter('/', child: (_, args) => DrawerPage()),
+    ModularRouter('/', child: (_, __) => DrawerPage()),
   ];
+
 }

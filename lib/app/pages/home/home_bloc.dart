@@ -2,7 +2,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:themealdb/app/pages/home/model/categories_model.dart';
 import 'package:themealdb/app/pages/home/repositories/home_repository.dart';
-import 'package:themealdb/app/pages/meal/model/meals_model.dart';
 
 
 class HomeBloc extends Disposable{

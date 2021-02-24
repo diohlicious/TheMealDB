@@ -55,7 +55,16 @@ class DetailPage extends StatelessWidget {
                     pinned: true,
                     elevation: 0,
                     flexibleSpace: FlexibleSpaceBar(
-                      title: Text('${d.strMeal}'),
+                      title: Row(
+                        children: [
+                          Text('${d.strMeal}'),
+                          Spacer(),
+                          IconButton(
+                            icon: Icon(Icons.favorite_border),
+                            onPressed: (){},
+                          )
+                        ],
+                      ),
                       stretchModes: [
                         StretchMode.zoomBackground,
                         StretchMode.fadeTitle

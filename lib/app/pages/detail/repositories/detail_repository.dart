@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:themealdb/app/network/network_endpoints.dart';
 import 'package:themealdb/app/pages/detail/model/detail.model.dart';
+import 'package:themealdb/app/pages/home/model/categories_model.dart';
 import 'package:themealdb/app/utils/network_util.dart';
 
 class DetailRepository extends Disposable {
@@ -29,6 +33,26 @@ class DetailRepository extends Disposable {
       _object[j]['strMeasure'] = measureList;
     }
     return _object;
+  }
+
+  Future<String> setFav(DetailModel detailModel) async{
+    final prefs = await SharedPreferences.getInstance();
+    String _alert ='';
+    final prefsStr = prefs.getString('fav');
+    final prefsMap = jsonDecode(prefsStr);
+    Category _cat = Category.fromJson(prefsMap);
+    for(var i=0;i<_cat.meals.length;i++){
+      if(_cat.meals[i].idMeal==detailModel.idMeal){
+        _cat.meals.removeAt(i);
+        _alert = 'Deleted From Favorite';
+      }else{
+        _cat.meals.add(detailModel);
+        _alert = 'Added To Favorite';
+      }
+    }
+    final prefsNew = jsonEncode(_cat.toJson());
+    prefs.setString('fav', prefsNew);
+    return _alert;
   }
 
   @override

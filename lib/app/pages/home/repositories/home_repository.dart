@@ -28,7 +28,6 @@ class HomeRepository extends Disposable{
       "strCategoryDescription":"",
       "strCategoryThumb":"${NetworkEndpoints.BASE_URL}/images/meal-icon.png",
       "meals": value,
-
     });
 
     Category _cat = Category.fromJson(_catJson);
