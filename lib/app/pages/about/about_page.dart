@@ -60,12 +60,13 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.grey[200],
       body: Container(
         child: CustomScrollView(
           physics: BouncingScrollPhysics(),
           slivers: [
             SliverAppBar(
-              backgroundColor: Colors.white.withOpacity(1),
+              backgroundColor: Colors.grey[200],
               stretch: true,
               elevation: 0,
               pinned: true,

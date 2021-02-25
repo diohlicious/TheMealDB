@@ -5,6 +5,7 @@ import 'package:themealdb/app/pages/detail/detail_module.dart';
 import 'package:themealdb/app/pages/drawer/drawer_module.dart';
 import 'package:themealdb/app/pages/home/home_module.dart';
 import 'package:themealdb/app/pages/meal/meal_module.dart';
+import 'package:themealdb/app/pages/webview/webview_module.dart';
 
 import 'app_bloc.dart';
 import 'app_widget.dart';
@@ -25,6 +26,7 @@ class AppModule extends MainModule {
     ModularRouter("/meal", module: MealModule()),
     ModularRouter("/detail", module: DetailModule()),
     ModularRouter("/about", module: AboutModule()),
+    ModularRouter("/webview", module: WebviewModule()),
   ];
 
   // Provide the root widget associated with your module
