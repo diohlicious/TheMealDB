@@ -25,6 +25,13 @@ class DetailBloc extends Disposable{
     }
   }
 
+  bool _onTap = false;
+  bool get onTap => _onTap;
+  set onTap(bool val){
+    _onTap =val;
+    notifyListener();
+  }
+
   Future <String> setFav(DetailModel detailModel) async{
     return await detailRepository.setFav(detailModel);
   }

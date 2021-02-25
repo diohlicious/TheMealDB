@@ -14,8 +14,6 @@ class DetailPage extends StatelessWidget {
     this.detailModel,
   }) : super(key: key);
 
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
-
   @override
   Widget build(BuildContext context) {
     DetailBloc bloc = Modular.get<DetailBloc>();
@@ -61,11 +59,12 @@ class DetailPage extends StatelessWidget {
                             Spacer(),
                             IconButton(
                               icon: Icon(Icons.favorite_border),
-                              onPressed: () {
-                                bloc.setFav(d).then((value) =>
+                              onPressed: () async {
+                                  await bloc.setFav(d).then((value) =>
                                     Scaffold.of(context).showSnackBar(SnackBar(
                                       content: Text(value),
-                                    )));
+                                    )),
+                                  );
                               },
                             )
                           ],

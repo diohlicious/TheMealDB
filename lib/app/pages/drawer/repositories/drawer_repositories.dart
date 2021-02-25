@@ -9,7 +9,7 @@ import 'package:themealdb/app/utils/shared_prefs_util.dart';
 class DrawerRepository extends Disposable {
 
   Future initFav() async{
-    if(sharedPrefs.fav==null){
+    if(sharedPrefs.fav.length==0){
       Map<String, dynamic> _map =new Map();
       _map.addAll({
         "idCategory":"",
@@ -28,7 +28,6 @@ class DrawerRepository extends Disposable {
     final parsed = prefs.getString('fav');
     final nameMap = jsonDecode(parsed);
     final nameCat = Category.fromJson(nameMap);
-    print('ini parsed $parsed');
     return nameCat;
   }
 

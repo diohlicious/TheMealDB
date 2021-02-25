@@ -1,11 +1,10 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:flutter/material.dart';
 import 'package:themealdb/app/pages/drawer/repositories/drawer_repositories.dart';
 
 import 'drawer_bloc.dart';
 import 'drawer_page.dart';
 class DrawerModule extends ChildModule {
-  static Inject get to => Inject<MainModule>.of();
+  static Inject get to => Inject<DrawerModule>.of();
 
   @override
   List<Bind> get binds => [

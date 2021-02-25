@@ -13,7 +13,8 @@ class MealPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MealBloc bloc = Modular.get<MealBloc>();
-    bloc.fetchMeal(category);
+    bloc.category = category;
+    bloc.fetchMeal();
     return StreamBuilder<Category>(
         stream: bloc.detailModel$,
         builder: (context, snapshot) {

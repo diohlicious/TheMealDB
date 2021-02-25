@@ -12,8 +12,17 @@ class MealBloc extends Disposable {
   MealBloc(this.mealRepository);
 
   BehaviorSubject<Category> detailModel$ = BehaviorSubject<Category>();
+  
+  Category _category;
+  
+  Category get category =>_category;
+  
+  set category(Category val){
+    _category =val;
+    notifyListener();
+  }
 
-  Future fetchMeal(Category category) async {
+  Future fetchMeal() async {
     Category _categoryModel;
     if (category == null) {
       Map _catMap = jsonDecode(sharedPrefs.fav);
@@ -32,4 +41,6 @@ class MealBloc extends Disposable {
   void dispose() {
     detailModel$.close();
   }
+
+  void notifyListener() {}
 }

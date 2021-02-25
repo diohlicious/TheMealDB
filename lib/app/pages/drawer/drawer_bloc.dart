@@ -35,10 +35,12 @@ class DrawerBloc extends Disposable {
   );
 
   Future<void> initPackageInfo() async {
-    PackageInfo.fromPlatform().then((value) {
+    await sharedPrefs.init();
+    await PackageInfo.fromPlatform().then((value) {
       packageInfo = value;
     });
-    await sharedPrefs.init().then((value) => drawerRepository.initFav());
+    await drawerRepository.initFav();
+
 
   }
 

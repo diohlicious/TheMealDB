@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:themealdb/app/pages/detail/model/detail.model.dart';
+import 'package:themealdb/app/pages/meal/meal_bloc.dart';
 
 class SliverMealWidget extends StatelessWidget {
   final List list;
@@ -11,12 +12,13 @@ class SliverMealWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MealBloc bloc = Modular.get<MealBloc>();
     var listItems = <Widget>[];
     for (var i = 0; i < list.length; i++) {
       DetailModel d = list[i];
       listItems.add(
         GestureDetector(
-          onTap: (){Modular.to.pushNamed('/detail', arguments: d, );},
+          onTap: ()async{await Modular.to.pushNamed('/detail', arguments: d, ).then((value) => bloc.fetchMeal());},
           child: Container(
             width: MediaQuery.of(context).size.width * 0.95,
             margin: EdgeInsets.fromLTRB(3, 5, 3, 0),
