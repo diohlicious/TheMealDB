@@ -4,7 +4,7 @@ import 'package:themealdb/app/pages/drawer/repositories/drawer_repositories.dart
 import 'drawer_bloc.dart';
 import 'drawer_page.dart';
 class DrawerModule extends ChildModule {
-  static Inject get to => Inject<MainModule>.of();
+  static Inject get to => Inject<DrawerModule>.of();
 
   @override
   List<Bind> get binds => [
@@ -14,6 +14,7 @@ class DrawerModule extends ChildModule {
 
   @override
   List<ModularRouter> get routers => [
-    ModularRouter('/', child: (_, args) => DrawerPage()),
+    ModularRouter('/', child: (_, __) => DrawerPage()),
   ];
+
 }

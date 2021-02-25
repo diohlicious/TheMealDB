@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:package_info/package_info.dart';
 import 'package:themealdb/app/pages/drawer/repositories/drawer_repositories.dart';
+import 'package:themealdb/app/utils/shared_prefs_util.dart';
 
 import 'model/drawer_model.dart';
 
-class DrawerBloc extends Disposable{
+class DrawerBloc extends Disposable {
   final DrawerRepository drawerRepository;
 
   DrawerBloc(this.drawerRepository);
@@ -34,14 +35,17 @@ class DrawerBloc extends Disposable{
   );
 
   Future<void> initPackageInfo() async {
-    final PackageInfo info = await PackageInfo.fromPlatform();
-    packageInfo = info;
+    await sharedPrefs.init();
+    await PackageInfo.fromPlatform().then((value) {
+      packageInfo = value;
+    });
+    await drawerRepository.initFav();
+
+
   }
 
   Future onSelectItem(int index) async {
-    selectedDrawerIndex=index;
-    //print(index);
-    // close the drawer
+    selectedDrawerIndex = index;
   }
 
   @override

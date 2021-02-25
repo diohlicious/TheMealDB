@@ -15,12 +15,12 @@ class SliverListWidget extends StatelessWidget {
       var d = list[i];
       listItems.add(
         GestureDetector(
-          onTap: (){Modular.to.pushNamed('/detail', arguments: [d], );},
+          onTap: (){Modular.to.pushNamed('/meal', arguments: d, );},
           child: Container(
             width: MediaQuery.of(context).size.width * 0.95,
             margin: EdgeInsets.fromLTRB(3, 5, 3, 0),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(9),
+              borderRadius: BorderRadius.circular(12),
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
                 end: Alignment(
@@ -37,6 +37,7 @@ class SliverListWidget extends StatelessWidget {
                   width: 120,
                   margin: EdgeInsets.fromLTRB(5, 0, 5, 0),
                   decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
                       image: DecorationImage(
                         fit: BoxFit.fitWidth,
                         image: NetworkImage(
@@ -44,22 +45,41 @@ class SliverListWidget extends StatelessWidget {
                       )),
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.65,
+                  width: MediaQuery.of(context).size.width * 0.60,
+                  padding: EdgeInsets.fromLTRB(5, 12, 5, 12),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(9),
-                  color: Colors.white.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(12),
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment(
+                          3.0, 0.3), // 10% of the width, so there are ten blinds.
+                      colors: [Colors.white.withOpacity(0.0), Colors.white.withOpacity(0.5), ], // red to yellow
+                      tileMode:
+                      TileMode.repeated, // repeats the gradient over the canvas
+                    ),
                   ),
-                  padding: EdgeInsets.fromLTRB(5, 3, 5, 3),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         '${d.strCategory}',
-                        style: TextStyle(color: Colors.blue[900],
-                        fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                            shadows: <Shadow>[
+                            Shadow(
+                            offset: Offset(1.0, 1.0),
+                    blurRadius: 2.0,
+                    color: Colors.grey,
+                  ),
+                  Shadow(
+                    offset: Offset(1.0, 1.0),
+                    blurRadius: 2.0,
+                    color: Colors.black,
+                  ),]
+                        ),
                       ),
                       Text('${d.strCategoryDescription}',
-                          style: TextStyle(color: Colors.blue[900], fontSize: 12),overflow: TextOverflow.ellipsis,),
+                          style: TextStyle(color: Colors.brown[900], fontSize: 12),overflow: TextOverflow.ellipsis,),
                     ],
                   ),
                 ),

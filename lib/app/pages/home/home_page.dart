@@ -12,22 +12,39 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-  class _HomePageState extends State<HomePage>{
-    HomeBloc bloc;
+class _HomePageState extends State<HomePage> {
+  HomeBloc bloc;
+  TextEditingController _controller;
 
-    @override
-    void initState() {
-      super.initState();
-      bloc = Modular.get<HomeBloc>();
-      bloc.fetchCategories();
-    }
+  @override
+  void initState() {
+    super.initState();
+    bloc = Modular.get<HomeBloc>();
+    bloc.fetchCategories();
+    _controller = TextEditingController(
+      text: bloc.txtSearch,
+    );
+  }
 
-    bool _switchList = true;
-    setSwitchList(bool val){
-      setState(() {
-        _switchList = val;
-      });
-    }
+  bool _switchList = true;
+
+  bool get switchList => _switchList;
+
+  setSwitchList() {
+    setState(() {
+      _switchList = !switchList;
+    });
+  }
+
+  bool _isSearch = false;
+
+  bool get isSearch => _isSearch;
+
+  setIsSearch() {
+    setState(() {
+      _isSearch = !isSearch;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -43,20 +60,17 @@ class HomePage extends StatefulWidget {
           return Scaffold(
             body: Container(
               decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment(
-                      0.3, 3.0),
-                  colors: [Colors.white, Colors.brown[900]],
-                )
-              ),
+                  gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment(0.3, 3.0),
+                colors: [Colors.white, Colors.brown[900]],
+              )),
               child: CustomScrollView(
                 physics: BouncingScrollPhysics(),
                 slivers: [
                   SliverAppBar(
-                    backgroundColor: Colors.black.withOpacity(0.3),
-                    expandedHeight: 120,
-                    //floating: true,
+                    backgroundColor: Colors.black.withOpacity(0.0),
+                    expandedHeight: !isSearch ? 120 : 0,
                     stretch: true,
                     pinned: true,
                     elevation: 0,
@@ -64,31 +78,51 @@ class HomePage extends StatefulWidget {
                     flexibleSpace: FlexibleSpaceBar(
                       title: Row(
                         children: [
-                          Text('Categories',style: TextStyle(color: Colors.white.withOpacity(0.8)),),
+                          !isSearch
+                              ? Text(
+                                  'Categories',
+                                  style: TextStyle(color: Colors.white),
+                                )
+                              : Container(
+                                  width: MediaQuery.of(context).size.width / 2,
+                                  child: TextField(
+                                      controller: _controller,
+                                      onChanged: bloc.setTxtSearch,
+                                      onSubmitted: (value) {
+                                        bloc.searchMeal();
+                                      },
+                                      textInputAction: TextInputAction.search,
+                                      decoration: new InputDecoration(
+                                          prefixIcon: new Icon(Icons.search),
+                                          hintText: 'Search...')),
+                                ),
                           Spacer(),
                           IconButton(
-                            icon: Icon(CupertinoIcons.rectangle_grid_2x2_fill),
-                            color: Colors.white.withOpacity(0.8),
+                            icon: Icon(CupertinoIcons.search_circle_fill),
+                            color: Colors.white,
                             iconSize: 15,
-                            tooltip: 'Grid',
                             onPressed: () {
-                              setSwitchList(true);
+                              setIsSearch();
                             },
                           ),
                           IconButton(
-                            icon: Icon(CupertinoIcons.rectangle_grid_1x2_fill),
-                            color: Colors.white.withOpacity(0.8),
+                            icon: switchList
+                                ? Icon(CupertinoIcons.rectangle_grid_1x2_fill)
+                                : Icon(CupertinoIcons.rectangle_grid_2x2_fill),
+                            color: Colors.white,
                             iconSize: 15,
-                            tooltip: 'List',
                             onPressed: () {
-                              setSwitchList(false);
+                              setSwitchList();
                             },
                           ),
                         ],
                       ),
-                      stretchModes: [StretchMode.zoomBackground, StretchMode.fadeTitle],
+                      stretchModes: [
+                        StretchMode.zoomBackground,
+                        StretchMode.fadeTitle
+                      ],
                       background: Container(
-                        margin: EdgeInsets.all(20),
+                        margin: EdgeInsets.fromLTRB(3, 20, 3, 20),
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: Color(0xff23180d),

@@ -20,12 +20,12 @@ class SliverGridWidget extends StatelessWidget {
         child: Column(
           children: [
             GestureDetector(
-              onTap: (){Modular.to.pushNamed('/detail', arguments: d, );},
+              onTap: (){Modular.to.pushNamed('/meal', arguments: d, );
+                },
               child: Container(
-                width: 170,
-                height: 170,
+                width: 150,
+                height: 150,
                 margin: EdgeInsets.fromLTRB(3, 6, 3, 0),
-                padding: EdgeInsets.only(bottom: 3.0),
                 decoration: BoxDecoration(
                   color: Colors.white.withOpacity(0.2),
                     borderRadius: BorderRadius.circular(9),
@@ -38,7 +38,13 @@ class SliverGridWidget extends StatelessWidget {
                     Spacer(),
                     Container(
                       width: MediaQuery.of(context).size.width,
-                      color: Colors.white.withOpacity(0.3),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.3),
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(9),
+                          bottomRight: Radius.circular(9),
+                        ),
+                      ),
                       child: Text(
                         '${d.strCategory}',
                         textAlign: TextAlign.center,
@@ -70,18 +76,7 @@ class SliverGridWidget extends StatelessWidget {
               textAlign: TextAlign.center,
               style: TextStyle(
                 color:Colors.brown,
-                shadows: <Shadow>[
-                Shadow(
-                  offset: Offset(1.0, 1.0),
-                  blurRadius: 3.0,
-                  color: Colors.black,
                 ),
-                Shadow(
-                  offset: Offset(1.0, 1.0),
-                  blurRadius: 3.0,
-                  color: Colors.white,
-                ),
-              ],),
             )
           ],
         ),
