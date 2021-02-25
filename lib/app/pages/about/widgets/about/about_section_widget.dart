@@ -24,7 +24,7 @@ class AboutSectionWidget extends StatelessWidget{
               children: [
                 TextSpan(
                   text: 'Code{House} ',
-                  style: TextStyle(color: Colors.blue[600]),
+                  style: TextStyle(color: Colors.blue[900]),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => bloc.launchUrl(urlCHouse),
                 ),
@@ -56,7 +56,7 @@ class AboutSectionWidget extends StatelessWidget{
                     color: Colors.blue[900],
                   ),
                   recognizer: TapGestureRecognizer()
-                    ..onTap = () {}, //TODO: Webview
+                    ..onTap = () =>Modular.to.pushNamed('/webview'),
                 )
               ]),
         ),

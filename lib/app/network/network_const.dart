@@ -5,6 +5,7 @@ const urlIn= 'https://www.linkedin.com/in/sunu-dioh-265aa042';
 const urlWa= 'https://wa.me/+628126902100?text=Hello Sunu. Congratz. You are hired.';
 const urlWeb= 'https://studioh.id';
 const urlMail = 'mailto:sunu@studioh.id?subject=&body=Congratz. You are hired.';
-const urlMealApi = 'https://www.themealdb.com/api.php';
+const urlMeal = 'https://www.themealdb.com';
+const urlMealApi = '$urlMeal/api.php';
 const urlCHouse = 'https://codehouse.id';
 const urlCv = 'https://studioh.id/assets/files/RESUME.pdf';
