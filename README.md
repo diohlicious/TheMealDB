@@ -1,11 +1,11 @@
 # TheMealDB Flutter App
 
-The Meal Db Flutter application.
+Studioh.id in association with TheMealDb present a Meal Studioh app to CodeHouse.
 
 ## Description
 
-- Creator: **Diohlicious**
-- Made For: **Code{House}** as Skill Test and/or Portfolio.
+- Creator: [**studioh.id**](https://studioh.id "CodeHouse")
+- Made For: [**Code{House}**](https://codehouse.id "CodeHouse") as Skill Test and/or Portfolio.
 - API: **https://www.themealdb.com/api.php**
 - License: **[MIT License](/LICENSE)**
 
