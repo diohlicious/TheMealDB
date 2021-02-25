@@ -18,7 +18,7 @@ class AboutSectionWidget extends StatelessWidget{
         RichText(
           textAlign: TextAlign.center,
           text: TextSpan(
-              text: 'This app is presented for ',
+              text: 'This app is presented to ',
               style: TextStyle(
                   color: Colors.grey[600], letterSpacing: 2),
               children: [
@@ -45,7 +45,7 @@ class AboutSectionWidget extends StatelessWidget{
                 ),
                 TextSpan(
                   text:
-                  'As an aasessment you can compare with their webview ',
+                  'As an asessment you can compare with their webview ',
                   style: TextStyle(color: Colors.grey[600]),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () => bloc.launchUrl(urlWeb),

@@ -55,7 +55,9 @@ class DetailPage extends StatelessWidget {
                       flexibleSpace: FlexibleSpaceBar(
                         title: Row(
                           children: [
-                            Text('${d.strMeal}'),
+                            Container(
+                              width: MediaQuery.of(context).size.width/2,
+                                child: Text('${d.strMeal}', style: TextStyle(),overflow: TextOverflow.ellipsis,)),
                             Spacer(),
                             IconButton(
                               icon: Icon(Icons.favorite_border),

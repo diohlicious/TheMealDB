@@ -111,19 +111,24 @@ class AboutPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      PhysicalModel(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
-                        elevation: 5,
-                        child: Container(
-                          width: 80,
-                          height: 80,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(40),
-                              image: DecorationImage(
-                                image: NetworkImage(
-                                    '${NetworkEndpoints.BASE_GRAVATAR}/91725ed8ce8677e2697e79bcbea5d728'),
-                              )),
+                      Container(
+                        alignment: Alignment.center,
+                        width: 90,
+                        height: 90,
+                        child: PhysicalModel(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          elevation: 5,
+                          child: Container(
+                            width: 80,
+                            height: 80,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(40),
+                                image: DecorationImage(
+                                  image: NetworkImage(
+                                      '${NetworkEndpoints.BASE_GRAVATAR}/91725ed8ce8677e2697e79bcbea5d728'),
+                                )),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -136,7 +141,7 @@ class AboutPage extends StatelessWidget {
                       'TETRA SUNU DIOH\n',
                       style: TextStyle(
                           fontFamily: 'Fredericka',
-                          fontSize: 28,
+                          fontSize: 25,
                           foreground: Paint()..shader = linearGradient),
                         children: [
                           TextSpan(
