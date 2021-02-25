@@ -9,16 +9,18 @@ import 'package:themealdb/app/utils/shared_prefs_util.dart';
 class DrawerRepository extends Disposable {
 
   Future initFav() async{
-    Map<String, dynamic> _map =new Map();
-    _map.addAll({
-      "idCategory":"",
-      "strCategory":"Favorite",
-      "strCategoryDescription":"",
-      "strCategoryThumb":"${NetworkEndpoints.BASE_URL}/images/meal-icon.png",
-      "meals": [],
-    });
-    var _mapStr=jsonEncode(_map);
-    sharedPrefs.fav=_mapStr;
+    if(sharedPrefs.fav==null){
+      Map<String, dynamic> _map =new Map();
+      _map.addAll({
+        "idCategory":"",
+        "strCategory":"Favorite",
+        "strCategoryDescription":"",
+        "strCategoryThumb":"${NetworkEndpoints.BASE_URL}/images/meal-icon.png",
+        "meals": [],
+      });
+      var _mapStr=jsonEncode(_map);
+      sharedPrefs.fav=_mapStr;
+    }
   }
 
   Future<Category> readFav() async {

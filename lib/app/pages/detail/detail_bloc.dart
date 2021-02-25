@@ -24,22 +24,12 @@ class DetailBloc extends Disposable{
       throw 'Could not launch $url';
     }
   }
-  Icon searchIcon = Icon(CupertinoIcons.search);
-  String _txtSearch;
-  String get txtSearch => _txtSearch;
-  setTxtSearch(String val){
-    _txtSearch = val;
-    notifyListener();
-  }
 
-  setFav(DetailModel detailModel){
-    detailRepository.setFav(detailModel);
-    //print(shared);
+  Future <String> setFav(DetailModel detailModel) async{
+    return await detailRepository.setFav(detailModel);
   }
-
 
   Widget appBarTitle;
-
 
   @override
   void dispose() {

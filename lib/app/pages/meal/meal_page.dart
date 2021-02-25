@@ -13,9 +13,7 @@ class MealPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     MealBloc bloc = Modular.get<MealBloc>();
-    category.meals==null
-        ? bloc.fetchMeal(category).then((value) => null)
-        : bloc.detailModel$.add(category);
+    bloc.fetchMeal(category);
     return StreamBuilder<Category>(
         stream: bloc.detailModel$,
         builder: (context, snapshot) {
@@ -64,12 +62,12 @@ class MealPage extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
                             Image.network(
-                              category.strCategoryThumb,
+                              d.strCategoryThumb,
                               //??'${NetworkEndpoints.BASE_URL}/images/meal-icon.png',
                               scale: 1.5,
                             ),
                             Text(
-                              category.strCategoryDescription,
+                              d.strCategoryDescription,
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 fontSize: 12,

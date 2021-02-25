@@ -2,8 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:themealdb/app/network/network_endpoints.dart';
-import 'package:themealdb/app/pages/about/about_module.dart';
-import 'package:themealdb/app/pages/home/home_module.dart';
+import 'package:themealdb/app/pages/views/about_view.dart';
+import 'package:themealdb/app/pages/views/favorite_views.dart';
+import 'package:themealdb/app/pages/views/home_views.dart';
 
 import 'drawer_bloc.dart';
 
@@ -16,9 +17,11 @@ class _DrawerPageState extends State<DrawerPage>{
   _getDrawerItemWidget(int pos) {
     switch (pos) {
       case 0:
-        return HomeModule(); //HomeView();
+        return HomeView(); //HomeView();
       case 1:
-        return AboutModule();
+        return FavoriteView();
+      case 2:
+        return AboutView();
       default:
         return Text('No View For This Menu');
     }
@@ -122,9 +125,7 @@ class _DrawerPageState extends State<DrawerPage>{
             ),
           ),
         ),
-        body: RouterOutlet(
-          module: _getDrawerItemWidget(bloc.selectedDrawerIndex),
-        ) //_getDrawerItemWidget(bloc.selectedDrawerIndex),
+        body: _getDrawerItemWidget(bloc.selectedDrawerIndex)
         );
   }
 }

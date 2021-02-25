@@ -5,7 +5,9 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:themealdb/app/network/network_endpoints.dart';
 import 'package:themealdb/app/pages/detail/model/detail.model.dart';
 import 'package:themealdb/app/pages/home/model/categories_model.dart';
+import 'package:themealdb/app/utils/function_util.dart';
 import 'package:themealdb/app/utils/network_util.dart';
+import 'package:themealdb/app/utils/shared_prefs_util.dart';
 
 class DetailRepository extends Disposable {
   Future<DetailModel> fetchDetail(String idMeal) => NetworkUtil()
@@ -13,7 +15,7 @@ class DetailRepository extends Disposable {
           // HTTP-GET request
           url: '${NetworkEndpoints.BASE_API}/lookup.php?i=$idMeal')
       .then((dynamic response) => toList(response['meals']).then((value) {
-        final _value = DetailModel.fromJson(value[0]);
+            final _value = DetailModel.fromJson(value[0]);
             return _value;
           }));
 
@@ -35,23 +37,31 @@ class DetailRepository extends Disposable {
     return _object;
   }
 
-  Future<String> setFav(DetailModel detailModel) async{
-    final prefs = await SharedPreferences.getInstance();
-    String _alert ='';
-    final prefsStr = prefs.getString('fav');
+  Future<String> setFav(DetailModel _detailModel) async {
+    String _alert = '';
+    final prefsStr = sharedPrefs.fav;
     final prefsMap = jsonDecode(prefsStr);
     Category _cat = Category.fromJson(prefsMap);
-    for(var i=0;i<_cat.meals.length;i++){
-      if(_cat.meals[i].idMeal==detailModel.idMeal){
-        _cat.meals.removeAt(i);
-        _alert = 'Deleted From Favorite';
-      }else{
-        _cat.meals.add(detailModel);
-        _alert = 'Added To Favorite';
+    if (_cat.meals.length >= 1) {
+      for (var i = 0; i < prefsMap['meals'].length; i++) {
+        if (_cat.meals[i].idMeal == _detailModel.idMeal) {
+          _cat.meals.removeAt(i);
+          _alert = 'Deleted from Favorite';
+          print('$_alert');
+        } else {
+          _cat.meals.add(_detailModel);
+          _alert = 'Added To Favorite';
+          print('$_alert');
+        }
       }
+    } else {
+      _cat.meals.add(_detailModel);
+      _alert = 'Added To Favorite';
     }
+
     final prefsNew = jsonEncode(_cat.toJson());
-    prefs.setString('fav', prefsNew);
+    sharedPrefs.fav = prefsNew;
+    print('${_detailModel.toJson()} + ${sharedPrefs.fav}');
     return _alert;
   }
 
