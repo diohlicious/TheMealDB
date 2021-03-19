@@ -15,7 +15,6 @@ class DrawerBloc extends Disposable {
   final drawerItems = [
     DrawerModel("Meals DB", Icons.set_meal),
     DrawerModel("Favorite", CupertinoIcons.square_favorites_alt),
-    DrawerModel("About", CupertinoIcons.info),
   ];
 
   int _selectedDrawerIndex = 0;

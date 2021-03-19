@@ -20,8 +20,6 @@ class _DrawerPageState extends State<DrawerPage>{
         return HomeView(); //HomeView();
       case 1:
         return FavoriteView();
-      case 2:
-        return AboutView();
       default:
         return Text('No View For This Menu');
     }
